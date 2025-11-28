@@ -1,5 +1,6 @@
 import fltk
 import shapefile
+import math
 
 sf = shapefile.Reader("departement_50m/departements-20140306-50m",  encoding="latin1")
 
@@ -15,6 +16,26 @@ for i in range(101):
 
 print(dico_info_departement["Mayotte"][1])
 
+
+def deg_to_mercator(dico_coord):
+
+    dico_coord_mercator = {}
+    
+    liste_coord_mercator = []
+
+    for k in dico_coord.keys():
+
+        for coord in dico_info_departement[k][1]:
+
+            liste_coord_mercator.append((coord[0], math.log(math.tan((math.pi / 4) + (abs(coord[1]) / 2)))))
+
+        dico_coord_mercator[k] = liste_coord_mercator
+
+    return dico_coord_mercator
+
+dico_coord_mercator = deg_to_mercator(dico_info_departement)
+
+print(dico_coord_mercator["Mayotte"])
 
 fltk.cree_fenetre(1000, 1000)
 
