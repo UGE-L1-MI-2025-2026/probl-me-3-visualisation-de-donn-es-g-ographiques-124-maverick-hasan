@@ -27,23 +27,21 @@ def deg_to_mercator(dico_coord):
 
         for coord in dico_info_departement[k][1]:
 
-            liste_coord_mercator.append((coord[0], math.log(math.tan((math.pi / 4) + (abs(coord[1]) / 2)))))
+            liste_coord_mercator.append((coord[0], math.log(math.tan((math.pi / 4) + (math.radians(coord[1]) / 2)))))
 
         dico_coord_mercator[k] = liste_coord_mercator
 
     return dico_coord_mercator
 
+
 dico_coord_mercator = deg_to_mercator(dico_info_departement)
 
-print(dico_coord_mercator["Mayotte"])
 
 fltk.cree_fenetre(1000, 1000)
 
-for k in dico_info_departement.keys() :
+for k,v in dico_coord_mercator.items() :
 
-    for i in dico_info_departement[k][1]:
-
-        fltk.polygone(i)
+        fltk.polygone(v)
 
 fltk.attend_ev()
 fltk.ferme_fenetre()
