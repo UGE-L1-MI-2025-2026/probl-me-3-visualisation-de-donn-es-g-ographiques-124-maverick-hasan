@@ -200,7 +200,7 @@ def etape4_dessiner_carte(dico_coord_screen):
         for key , liste_info in dico_coord_screen.items() :
             x_cercle = (liste_info[2][1][0] + liste_info[2][0][0])/2
             y_cercle = (liste_info[2][1][1] + liste_info[2][0][1])/2
-            fltk.cercle(x_cercle , y_cercle , FENETRE_TAILLE * 0.00750 , couleur="red" , remplissage="red") 
+            fltk.cercle(x_cercle , y_cercle , FENETRE_TAILLE * 0.00300 , couleur="red" , remplissage="red") 
             COORDONEE_CENTRE_CERCLES[key] = [x_cercle , y_cercle]
 
         fltk.mise_a_jour()
@@ -260,7 +260,7 @@ def afficher_info(x_clic , y_clic , dico_coord_screen_colore) :
     for key , coordonee in COORDONEE_CENTRE_CERCLES.items() :
         result_x = abs(x_clic - coordonee[0])
         result_y = abs(y_clic - coordonee[1])
-        if (result_x <= FENETRE_TAILLE * 0.00750) and (result_y <= FENETRE_TAILLE * 0.00750) :
+        if (result_x <= FENETRE_TAILLE * 0.00300) and (result_y <= FENETRE_TAILLE * 0.00300) :
             fltk.texte(FENETRE_TAILLE * 0.00750 , FENETRE_TAILLE * 0.00750 , key , taille=round(FENETRE_TAILLE * 0.015) , tag="bonjour")
             fltk.texte(FENETRE_TAILLE * 0.00750 , FENETRE_TAILLE * 0.1 , dico_coord_screen_colore[key][1] , taille=round(FENETRE_TAILLE * 0.015) , tag = "Toto")
 def main():
